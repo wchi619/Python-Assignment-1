@@ -204,7 +204,7 @@ if __name__ == "__main__":
     # Call calculation function to print the final date.
     if step == True:
         if days > 0:  # Loop to print positive date step by step.
-            for i in range(1, days+1):
+            for i in range(1, days + 1):
                 final_date = dbda(date, i)
                 print(final_date)
         else:  # Loop to print negative date step by step (reverse order).
