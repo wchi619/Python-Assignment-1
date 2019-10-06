@@ -4,21 +4,18 @@ OPS435 Assignment 1 - Fall 2019
 Program: a1_wchi3.py
 Author: William Chi
 
-The python code in this file (a1_wchi3.py) is original work written by William Chi. No code in this file is copied from any other source except those provided by the course instructor, including any person, textbook, or on-line resource. 
-I have not shared this python script with anyone or anything except for submission for grading. I understand that the Academic Honesty Policy will be enforced and violators will be reported and appropriate action will be taken.
+The python code in this file (a1_wchi3.py) is original work written by William Chi. No code in this file is copied from any other source except those provided by the course instructor, including any person, textbook, or on-line resource. I have not shared this python script with anyone or anything except for submission for grading. I understand that the Academic Honesty Policy will be enforced and violators will be reported and appropriate action will be taken.
 This program will return the date in YYYY/MM/DD after the given day (second argument) is passed. This program requires 2 arguments with an optional --step flag.
 """
 
 # Import package
 import sys
-import os
-os.system('clear')
 
 def usage():
     """Begin usage check. """
 
     if len(sys.argv) != 3 or len(sys.argv[1]) != 10 or sys.argv[2].lstrip("-").isdigit() == False:  #Argument parameter check
-        print("Usage: ./a1_wchi3.py [--step] YYYY/MM/DD +/-n")
+        print("Error: wrong date entered")
         exit()
     else:  #If error check pass, continue program and return date and days
         date = str(sys.argv[1])
@@ -27,21 +24,20 @@ def usage():
 
 def valid_date(date):
     """Validate the date the user inputs.
-    This function will take a date in "YYYY/MM/DD" format, and return True if the given date is a valid date, otherwise return False plus an appropriate status message. 
-    This function will also call another function to double check that the days in month entered is correct.
+    This function will take a date in "YYYY/MM/DD" format, and return True if the given date is a valid date, otherwise return False plus an appropriate status message. This function will also call another function to double check that the days in month entered is correct.
     """
 
     days_in_mon(date)
 
     # Begin date validation
-    if int(date[0:4]) not in range(1, 2020):
-        print("Error: Invalid year entered.")
+    if int(date[0:4]) not in range(1, 2050):
+        print("Error: wrong year entered")
         exit()
     elif int(date[5:7]) not in range(1, 13):
-        print("Error: Invalid month entered.")
+        print("Error: wrong month entered")
         exit()
     elif int(date[8:10]) not in range(1, 32):
-        print("Error: Invalid day entered.")
+        print("Error: wrong day entered")
         exit()
     elif leap_year(date) == False and date[5:7] == '02' and int(date[8:10]) in range(29,32):  # If not leap year but date entered is Feb 29-31
         print("Error: Invalid day entered (not a leap year).")
@@ -54,8 +50,7 @@ def valid_date(date):
 
 def days_in_mon(date):
     """Creates dictionary of the maximum number of days per month.
-    This function will take a year in "YYYY" format and return a dictionary object which contains the total number of days in each month for the given year. 
-    The function will also call another function to check for leap year.
+    This function will take a year in "YYYY" format and return a dictionary object which contains the total number of days in each month for the given year. The function will also call another function to check for leap year.
     """
 
     leap_year(date)
@@ -99,8 +94,7 @@ def leap_year(date):
 
 def after(date, days):
     """Returns the final calculated value of the date.
-    This function will take a date and a positive integer, add the integer as the amount of days to the date and return the final date. 
-    This function will also call on another function to retrieve a dictionary of the total number of days per each month (also accounting for leap years).
+    This function will take a date and a positive integer, add the integer as the amount of days to the date and return the final date. This function will also call on another function to retrieve a dictionary of the total number of days per each month (also accounting for leap years).
     """
 
     dictionary = days_in_mon(date)
@@ -110,7 +104,7 @@ def after(date, days):
     year = int(year)
     month = int(month)
     day = int(day)
-    
+
     # Define variables for the final month & day.
     nmonth = month
     nday = day
@@ -136,8 +130,7 @@ def after(date, days):
 
 def before(date, days):
     """Returns the final calculated value of the date.
-    This function will take a date and a negative integer, subtract the date with the amount of days and return the final date. 
-    This function will also call on another function to retrieve a dictionary of the total number of days per each month (also accounting for leap years).
+    This function will take a date and a negative integer, subtract the date with the amount of days and return the final date. This function will also call on another function to retrieve a dictionary of the total number of days per each month (also accounting for leap years).
     """
 
     dictionary = days_in_mon(date)
@@ -204,14 +197,14 @@ if __name__ == "__main__":
     # Call calculation function to print the final date.
     if step == True:
         if days > 0:  # Loop to print positive date step by step.
-            for i in range(1, days + 1):
+            for i in range(1, days+1):
                 final_date = dbda(date, i)
                 print(final_date)
         else:  # Loop to print negative date step by step (reverse order).
             for i in reversed(range(days, 0)):
                 final_date = dbda(date, i)
                 print(final_date)
-                
+
     if step == False:  # Loop to print normally if no --step option inputted.
         final_date = dbda(date,days)
         print(final_date)
