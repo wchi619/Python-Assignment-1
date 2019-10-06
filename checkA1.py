@@ -28,3 +28,4 @@ Test run command 10 : python3 a1_wchi3.py 2020/03/01 -1
 Test Results: {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1}
 Total test run marks:  48.0
 Total marks for script (max. 48): 48.0
+ 
