@@ -1,0 +1,48 @@
+This is the algorithm file for OPS435 Assignment 1
+Author: William Chi
+Seneca ID: wchi3
+Date: 10/06/2019
+
+Overview:
+Our python script will consist of a file that will calculate the resulting end date when a date and a number (can be negative) is entered. The script will then calculate the final date based on the number inputted and display the resulting date. There is an option to include --step as the first argument, which will print out the dates verbosely and display all dates leading up to the final date. The script will also account for leap years as well as error checking failsafes, which checks for invalid dates or entries entered.
+
+Requirements:
+The python script will consist of
+  - 7 function definitions and 1 main execution function
+  - Imported sys package to take arguments
+  
+Algorithm:
+
+1. Begin with initial block code for commentation (name, date, etc.)
+
+2. Import sys and call python3 shebang
+
+3. Define the 7 function calls:
+
+    - usage(): 
+      Start with this function definition. 
+      This function will ensure the below is true and return the 2 arguments if no errors:
+        - The amount of arguments entered must be 3
+        - The length of argument 1 (the date) is 10 characters
+        - The second argument is a numerical digit
+        
+    - valid_date():
+      This function will take a date and check if it is a valid date entered or not. The function will also call days_in_mon() (which calls leap_year) function to double check if the number of days in the month entered is a valid date or not and if not, will display an error message and exit the program. If the date validation passes, return a True to the main program. We should have 5 if-statements to check for all inconsistencies.
+      
+    - days_in_mon():
+      This function will create a dictionary that lists the default days in each month without the leap year. Below the dictionary, we create an if statement that calls the leap_year() to double check if the year inputted is a leap year. leap_year() will return True/False depending on if the year is leap year or not, and our if statement will change the date in the dictionary accordingly, and return the dictionary to the main program.
+      
+    - leap_year():
+      This function will take only the year from the date the user inputs and performs calculations to determine if the year is a leap year or not. The leap year test will only return True on 2 conditions:
+        - The century year is divisible by 400, OR 
+        - The year is divisible by 4 AND IS NOT divisible by 100 (omit century years).
+        
+    - after():
+      This function will be called if the number inputted is a positive number. The function will call the dictionary and split the date into 3 separate strings (convert to integer after). Calculation will begin to calculate the amount of days to add to the date by using a for loop using the range of the days entered as the for loop argument. Inside the for loop, further calculation is made to ensure that the month does not exceed 12 when adding the dates and if it does, reset it to 1 and add 1 to the year.
+    - before():
+    This function will be called if the number inputted is a negative number. The function will call the dictionary and split the date into 3 separate strings (convert to integer after). Calculation will begin to calculate the amount of days to subtract to the date by using a for loop using the range of the days entered as the for loop argument. Inside the for loop, further calculation is made to ensure that the month does not go below 1 when adding the dates and if it does, reset it to 12 and subtract 1 to the year.
+    - dbda():
+      This function will check if the days inputted is a positive or negative integer, and call the appropriate function as necessary: after() or before().
+
+4. Create our main command code which will be executed first. This is also the part where we perform the --step check before anything runs. If the --step option is present, it will be popped out of the argument and create a variable 'step' that holds the value True, then call the usage() function to start usage checking. After usage checking passes, we initialize the 2 arguments and then validate both arguments. We then call the calculation function to print the final date. In this step, we use a if statement that will check if the 'step' option is True or not. If True, and the day entered is a positive integer, we will verbosely call the after() function over and over in a for loop to print out all dates leading up to the final date. If the days entered is a negative number, do the same thing except subtract the days inside the for loop. We will also create another if statement for when 'step' option is False, and print the final date normally.
+
