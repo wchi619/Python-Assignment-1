@@ -4,7 +4,6 @@ OPS435 Assignment 1 - Fall 2019
 Program: a1_wchi3.py
 Author: William Chi
 
-The python code in this file (a1_wchi3.py) is original work written by William Chi. No code in this file is copied from any other source except those provided by the course instructor, including any person, textbook, or on-line resource. I have not shared this python script with anyone or anything except for submission for grading. I understand that the Academic Honesty Policy will be enforced and violators will be reported and appropriate action will be taken.
 This program will return the date in YYYY/MM/DD after the given day (second argument) is passed. This program requires 2 arguments with an optional --step flag.
 """
 
